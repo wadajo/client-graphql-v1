@@ -40,6 +40,9 @@ public class ClientV1Application {
 						""")
 				.retrieve("artistas")
 				.toEntityList(Artista.class)
+				.map(artistas -> artistas.stream()
+						.map(artista->new Libro("Libro de "+artista.apellido(),artista))
+						.toList())
 				.subscribe(System.out::println);
 	}
 }
